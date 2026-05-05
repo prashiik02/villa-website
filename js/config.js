@@ -7,8 +7,8 @@ window.APP_CONFIG = {
   siteName: "Vedant's Bungalow",
   siteUrl: typeof window !== 'undefined' ? window.location.origin : '',
 
-  supabaseUrl: window.__SUPABASE_URL__ || '',
-  supabaseAnonKey: window.__SUPABASE_ANON_KEY__ || '',
+  supabaseUrl: window.__SUPABASE_URL__ || 'https://zuemskawdsuukodwohrh.supabase.co',
+  supabaseAnonKey: window.__SUPABASE_ANON_KEY__ || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp1ZW1za2F3ZHN1dWtvZHdvaHJoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc5MDkwNjEsImV4cCI6MjA5MzQ4NTA2MX0.1RGr6Vc231yM750i_NJUhwM2m6X3N7lFW9nhnobYK_8',
 
   /** Supabase Edge Functions base: https://<project>.supabase.co/functions/v1 */
   functionsBase:
