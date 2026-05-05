@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex,nofollow">
+    <title>Admin Login | Vedant's Bungalow</title>
+    <script src="../js/runtime-config.js"></script>
+    <script src="../js/config.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+<body class="bg-cream min-h-screen flex items-center justify-center px-4 text-slate-900">
+    <div class="w-full max-w-md bg-white rounded-[2rem] shadow-xl border border-orange-50 p-8">
+        <h1 class="text-2xl font-serif text-forest mb-2">Owner login</h1>
+        <p class="text-sm text-slate-500 mb-8">Use the Supabase Auth email you configured for this project.</p>
+        <p id="login-message" class="hidden text-sm font-semibold rounded-xl px-4 py-3 mb-4" role="alert"></p>
+        <form id="admin-login-form" class="space-y-4">
+            <div>
+                <label class="text-xs font-bold text-slate-500 uppercase tracking-wider" for="admin-email">Email</label>
+                <input id="admin-email" type="email" autocomplete="username" required class="mt-1 w-full px-4 py-3 rounded-xl bg-slate-50 border-none focus:ring-2 focus:ring-orange-200 outline-none">
+            </div>
+            <div>
+                <label class="text-xs font-bold text-slate-500 uppercase tracking-wider" for="admin-password">Password</label>
+                <input id="admin-password" type="password" autocomplete="current-password" required class="mt-1 w-full px-4 py-3 rounded-xl bg-slate-50 border-none focus:ring-2 focus:ring-orange-200 outline-none">
+            </div>
+            <button type="submit" class="w-full btn-gradient text-white py-3 rounded-xl font-bold shadow-lg">Sign in</button>
+        </form>
+        <p class="text-xs text-slate-400 mt-6 text-center"><a href="/index.html" class="text-terracotta underline">← Back to site</a></p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/supabase-client.js"></script>
+    <script src="../js/admin-login.js"></script>
+</body>
+</html>

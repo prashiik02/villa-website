@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Enter guest details and review your Vedant's Bungalow booking before payment.">
+    <title>Guest Details | Vedant's Bungalow</title>
+    <script src="js/runtime-config.js"></script>
+    <script src="js/config.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body class="bg-cream text-slate-900">
+    <div class="min-h-screen flex flex-col">
+        <div data-include="header"></div>
+
+        <section class="bg-forest py-12 text-center text-white">
+            <div class="max-w-3xl mx-auto px-6">
+                <h1 class="text-3xl md:text-4xl font-serif mb-4">Guest details &amp; review</h1>
+                <p class="text-white/70 text-sm">Step 2 of 3 — confirm your stay summary, then proceed to secure payment.</p>
+                <div class="flex flex-wrap justify-center gap-3 mt-6 text-xs text-white/60">
+                    <a href="/booking.html" class="underline hover:text-white">← Edit dates</a>
+                    <span aria-hidden="true">·</span>
+                    <span class="text-terracotta font-semibold">2. Details</span>
+                    <span aria-hidden="true">·</span>
+                    <span>3. Pay</span>
+                </div>
+            </div>
+        </section>
+
+        <main class="flex-1 max-w-5xl mx-auto px-6 py-12 w-full grid lg:grid-cols-2 gap-10">
+            <div class="space-y-6">
+                <div class="bg-white rounded-[2rem] p-8 border border-orange-50 shadow-sm">
+                    <h2 class="text-xl font-bold text-forest font-serif mb-6 flex items-center gap-2">
+                        <iconify-icon icon="lucide:user" class="text-terracotta"></iconify-icon>
+                        Primary guest
+                    </h2>
+                    <form id="guest-details-form" class="space-y-5">
+                        <p id="guest-form-message" class="hidden text-sm font-semibold rounded-xl px-4 py-3" role="alert"></p>
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div class="space-y-2 sm:col-span-2">
+                                <label class="text-sm font-semibold text-slate-500" for="gd-name">Full name</label>
+                                <input id="gd-name" name="guest_name" type="text" required autocomplete="name" class="w-full px-4 py-3 bg-slate-50 border-none rounded-xl focus:ring-2 focus:ring-orange-200 outline-none" placeholder="As on ID proof">
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-sm font-semibold text-slate-500" for="gd-phone">Phone</label>
+                                <input id="gd-phone" name="guest_phone" type="tel" required autocomplete="tel" class="w-full px-4 py-3 bg-slate-50 border-none rounded-xl focus:ring-2 focus:ring-orange-200 outline-none" placeholder="+91 …">
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-sm font-semibold text-slate-500" for="gd-email">Email</label>
+                                <input id="gd-email" name="guest_email" type="email" required autocomplete="email" class="w-full px-4 py-3 bg-slate-50 border-none rounded-xl focus:ring-2 focus:ring-orange-200 outline-none" placeholder="For confirmation">
+                            </div>
+                            <div class="space-y-2 sm:col-span-2">
+                                <label class="text-sm font-semibold text-slate-500" for="gd-id">ID proof reference</label>
+                                <input id="gd-id" name="id_proof_note" type="text" class="w-full px-4 py-3 bg-slate-50 border-none rounded-xl focus:ring-2 focus:ring-orange-200 outline-none" placeholder="e.g. Aadhaar last 4 digits / passport no.">
+                            </div>
+                            <div class="space-y-2 sm:col-span-2">
+                                <label class="text-sm font-semibold text-slate-500" for="gd-notes">Special requests</label>
+                                <textarea id="gd-notes" name="special_requests" rows="3" class="w-full px-4 py-3 bg-slate-50 border-none rounded-xl focus:ring-2 focus:ring-orange-200 outline-none" placeholder="Early check-in, celebrations, dietary notes…"></textarea>
+                            </div>
+                        </div>
+                        <button type="submit" id="gd-submit" class="w-full btn-gradient text-white py-4 rounded-2xl font-bold text-lg hover:opacity-95 transition-all shadow-lg">
+                            Save &amp; continue to payment
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="lg:sticky lg:top-28 h-fit space-y-6">
+                <div class="bg-white rounded-[2rem] p-8 border border-orange-50 shadow-xl">
+                    <h2 class="text-xl font-bold text-forest font-serif mb-6">Your stay</h2>
+                    <dl class="space-y-4 text-sm">
+                        <div class="flex justify-between gap-4">
+                            <dt class="text-slate-500">Property</dt>
+                            <dd id="rev-property" class="font-semibold text-forest text-right">—</dd>
+                        </div>
+                        <div class="flex justify-between gap-4">
+                            <dt class="text-slate-500">Check-in</dt>
+                            <dd id="rev-checkin" class="font-semibold text-right">—</dd>
+                        </div>
+                        <div class="flex justify-between gap-4">
+                            <dt class="text-slate-500">Check-out</dt>
+                            <dd id="rev-checkout" class="font-semibold text-right">—</dd>
+                        </div>
+                        <div class="flex justify-between gap-4">
+                            <dt class="text-slate-500">Guests</dt>
+                            <dd id="rev-guests" class="font-semibold text-right">—</dd>
+                        </div>
+                    </dl>
+                    <hr class="my-6 border-orange-50">
+                    <div class="space-y-2 text-sm text-slate-600">
+                        <div class="flex justify-between"><span>Room subtotal</span><span id="rev-sub">₹0</span></div>
+                        <div class="flex justify-between"><span>Extra guests</span><span id="rev-extra">₹0</span></div>
+                        <div class="flex justify-between"><span>Service fee</span><span id="rev-svc">₹0</span></div>
+                        <div class="flex justify-between"><span>GST</span><span id="rev-gst">₹0</span></div>
+                    </div>
+                    <div class="flex justify-between items-center mt-6 pt-4 border-t border-forest/10 text-lg font-bold text-forest">
+                        <span>Total</span>
+                        <span id="rev-total" class="text-terracotta">₹0</span>
+                    </div>
+                </div>
+                <p class="text-xs text-slate-400 text-center">By continuing you agree to our <a href="/terms.html" class="text-terracotta underline">terms</a> and <a href="/privacy.html" class="text-terracotta underline">privacy</a> notices.</p>
+            </div>
+        </main>
+
+        <div data-include="footer"></div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-client.js"></script>
+    <script src="js/booking-state.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/guest-details.js"></script>
+</body>
+</html>

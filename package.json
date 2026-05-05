@@ -1,0 +1,12 @@
+{
+  "name": "vedants-bungalow",
+  "private": true,
+  "description": "Static site + Supabase + Razorpay for Vedant's Bungalow",
+  "scripts": {
+    "start": "npx --yes serve . -p 3000"
+  },
+  "dependencies": {
+    "@supabase/ssr": "^0.10.2",
+    "@supabase/supabase-js": "^2.105.3"
+  }
+}

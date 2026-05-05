@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="view-transition" content="same-origin">
+    <meta name="description" content="Check availability and book The Grand Villa or Cozy Cottage at Vedant's Bungalow, Mahabaleshwar.">
+    <title>Check Availability | Vedant's Bungalow</title>
+    <script src="js/runtime-config.js"></script>
+    <script src="js/config.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div class="min-h-screen bg-cream flex flex-col text-slate-900">
+        <div data-include="header"></div>
+
+        <main style="view-transition-name: main-content" class="flex-1">
+            <section class="bg-forest py-16 text-center">
+                <div class="max-w-7xl mx-auto px-6">
+                    <h1 class="text-4xl md:text-5xl text-white mb-4 font-serif">Check Availability</h1>
+                    <div class="flex flex-wrap items-center justify-center gap-4 text-white/60 text-sm">
+                        <span class="flex items-center gap-2 text-terracotta font-bold"><span class="w-6 h-6 rounded-full bg-terracotta text-white flex items-center justify-center text-[10px]">1</span> Select Dates</span>
+                        <iconify-icon icon="lucide:chevron-right"></iconify-icon>
+                        <span class="flex items-center gap-2"><span class="w-6 h-6 rounded-full bg-white/10 text-white flex items-center justify-center text-[10px]">2</span> Details</span>
+                        <iconify-icon icon="lucide:chevron-right"></iconify-icon>
+                        <span class="flex items-center gap-2"><span class="w-6 h-6 rounded-full bg-white/10 text-white flex items-center justify-center text-[10px]">3</span> Pay</span>
+                    </div>
+                </div>
+            </section>
+
+            <p id="booking-step-error" class="hidden max-w-3xl mx-auto px-6 mt-6 text-sm font-semibold text-red-700 bg-red-50 rounded-2xl py-3 text-center" role="alert"></p>
+
+            <section class="py-12 px-6">
+                <div class="max-w-7xl mx-auto grid lg:grid-cols-12 gap-12">
+                    <div class="lg:col-span-8 space-y-12">
+                        <div>
+                            <h3 class="text-xl font-bold mb-6 flex items-center gap-2 font-serif text-forest">
+                                <iconify-icon icon="lucide:home" class="text-terracotta"></iconify-icon>
+                                1. Choose Property Type
+                            </h3>
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <button type="button" data-property-id="grand_villa" class="relative group border-2 border-terracotta rounded-3xl p-6 bg-white text-left overflow-hidden ring-4 ring-terracotta/20 transition-all">
+                                    <div class="absolute top-4 right-4 text-terracotta" data-property-check>
+                                        <iconify-icon icon="lucide:check-circle" class="text-2xl"></iconify-icon>
+                                    </div>
+                                    <span class="text-terracotta font-bold uppercase text-[10px] tracking-widest block mb-1">Available</span>
+                                    <h4 class="text-xl font-bold text-forest mb-2">The Grand Villa</h4>
+                                    <p class="text-sm text-slate-500">Perfect for large families (8–12 guests)</p>
+                                    <div class="mt-4 flex items-center gap-4 text-sm text-slate-400">
+                                        <span class="flex items-center gap-1"><iconify-icon icon="lucide:bed"></iconify-icon> 4 BR</span>
+                                        <span class="flex items-center gap-1"><iconify-icon icon="lucide:bath"></iconify-icon> 4 Bath</span>
+                                    </div>
+                                </button>
+                                <button type="button" data-property-id="cozy_cottage" class="relative group border-2 border-orange-100 rounded-3xl p-6 bg-white hover:border-terracotta/30 transition-all text-left overflow-hidden">
+                                    <div class="absolute top-4 right-4 text-terracotta opacity-0 transition-opacity" data-property-check>
+                                        <iconify-icon icon="lucide:check-circle" class="text-2xl"></iconify-icon>
+                                    </div>
+                                    <span class="text-slate-400 font-bold uppercase text-[10px] tracking-widest block mb-1">Cozy stay</span>
+                                    <h4 class="text-xl font-bold text-forest mb-2">Cozy Cottage</h4>
+                                    <p class="text-sm text-slate-500">Intimate stay (2–4 guests)</p>
+                                    <div class="mt-4 flex items-center gap-4 text-sm text-slate-400">
+                                        <span class="flex items-center gap-1"><iconify-icon icon="lucide:bed"></iconify-icon> 2 BR</span>
+                                        <span class="flex items-center gap-1"><iconify-icon icon="lucide:bath"></iconify-icon> 2 Bath</span>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="text-xl font-bold mb-6 flex items-center gap-2 font-serif text-forest">
+                                <iconify-icon icon="lucide:calendar" class="text-terracotta"></iconify-icon>
+                                2. Select Your Dates
+                            </h3>
+                            <div class="bg-white rounded-[2.5rem] p-8 shadow-sm border border-orange-50">
+                                <div class="flex items-center justify-between mb-8">
+                                    <button type="button" id="cal-prev" class="w-10 h-10 rounded-full border border-slate-100 flex items-center justify-center hover:bg-cream transition-colors" aria-label="Previous month">
+                                        <iconify-icon icon="lucide:chevron-left"></iconify-icon>
+                                    </button>
+                                    <h4 id="cal-month-label" class="text-xl font-bold text-forest font-serif">—</h4>
+                                    <button type="button" id="cal-next" class="w-10 h-10 rounded-full border border-slate-100 flex items-center justify-center hover:bg-cream transition-colors" aria-label="Next month">
+                                        <iconify-icon icon="lucide:chevron-right"></iconify-icon>
+                                    </button>
+                                </div>
+                                <div class="calendar-grid mb-4" id="booking-calendar-grid" aria-label="Calendar"></div>
+                                <div class="flex flex-wrap gap-6 pt-6 border-t border-slate-50 text-xs text-slate-500">
+                                    <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-slate-200"></span> Blocked</div>
+                                    <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full border border-slate-200 relative"><span class="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 bg-green-500 rounded-full"></span></span> Available</div>
+                                    <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-terracotta"></span> Selected</div>
+                                </div>
+                                <p class="text-xs text-slate-400 mt-4">Tap a check-in date, then check-out. Checkout morning is not charged as a night.</p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="text-xl font-bold mb-6 flex items-center gap-2 font-serif text-forest">
+                                <iconify-icon icon="lucide:users" class="text-terracotta"></iconify-icon>
+                                3. Guest Count
+                            </h3>
+                            <div class="flex items-center gap-6 bg-white p-6 rounded-3xl border border-orange-50 justify-between">
+                                <div class="flex items-center gap-4">
+                                    <button type="button" id="guest-minus" class="w-12 h-12 rounded-2xl bg-cream border border-orange-50 flex items-center justify-center text-xl text-forest hover:bg-terracotta hover:text-white transition-all" aria-label="Fewer guests">−</button>
+                                    <span id="guest-count-display" class="text-2xl font-bold w-12 text-center tabular-nums">08</span>
+                                    <button type="button" id="guest-plus" class="w-12 h-12 rounded-2xl bg-cream border border-orange-50 flex items-center justify-center text-xl text-forest hover:bg-terracotta hover:text-white transition-all" aria-label="More guests">+</button>
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-xs text-slate-400 uppercase tracking-widest block">Maximum capacity</span>
+                                    <span id="guest-capacity-label" class="font-semibold text-slate-700">12 Guests</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-4">
+                        <div class="sticky top-32 space-y-6">
+                            <div class="bg-white rounded-[2.5rem] p-8 shadow-2xl border border-orange-50 overflow-hidden relative">
+                                <div class="absolute top-0 right-0 w-32 h-32 bg-terracotta/5 rounded-full -mr-16 -mt-16"></div>
+                                <h4 class="text-2xl font-bold text-forest mb-6 font-serif">Booking Summary</h4>
+                                <div class="space-y-6 mb-8">
+                                    <div class="flex justify-between items-start">
+                                        <div class="space-y-1">
+                                            <p class="text-xs text-slate-400 uppercase tracking-widest">Stay at</p>
+                                            <p id="summary-property" class="font-bold text-forest">The Grand Villa</p>
+                                        </div>
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-4 bg-cream p-4 rounded-2xl">
+                                        <div class="space-y-1">
+                                            <p class="text-[10px] text-slate-400 uppercase tracking-widest">Check-in</p>
+                                            <p id="summary-checkin" class="text-sm font-bold">—</p>
+                                        </div>
+                                        <div class="space-y-1 border-l border-orange-100 pl-4">
+                                            <p class="text-[10px] text-slate-400 uppercase tracking-widest">Check-out</p>
+                                            <p id="summary-checkout" class="text-sm font-bold">—</p>
+                                        </div>
+                                    </div>
+                                    <div class="space-y-3 pt-4 border-t border-orange-50 text-sm">
+                                        <div class="flex justify-between text-slate-600">
+                                            <span id="summary-nights-line">—</span>
+                                            <span id="summary-subtotal">₹0</span>
+                                        </div>
+                                        <div class="flex justify-between text-slate-600">
+                                            <span>Extra guests</span>
+                                            <span id="summary-extra">₹0</span>
+                                        </div>
+                                        <div class="flex justify-between text-slate-600">
+                                            <span>Service fee</span>
+                                            <span id="summary-service">₹0</span>
+                                        </div>
+                                        <div class="flex justify-between text-slate-600">
+                                            <span>GST</span>
+                                            <span id="summary-gst">₹0</span>
+                                        </div>
+                                        <div class="flex justify-between text-forest font-bold text-xl pt-4 border-t border-forest/10">
+                                            <span>Total</span>
+                                            <span id="summary-total" class="text-terracotta">₹0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="/guest-details.html" id="cta-continue-booking" class="block w-full bg-terracotta text-white py-4 rounded-2xl font-bold text-center hover:bg-forest transition-all shadow-xl shadow-terracotta/20 active:scale-95">Continue to Details</a>
+                                <p class="text-center text-xs text-slate-400 mt-4">You will confirm guest details next. Pay only on the following step.</p>
+                            </div>
+
+                            <div class="bg-white rounded-[2.5rem] p-8 shadow-sm border border-orange-50">
+                                <h4 class="text-xl font-bold text-forest mb-6 flex items-center gap-2 font-serif">
+                                    <iconify-icon icon="lucide:sparkles" class="text-terracotta"></iconify-icon>
+                                    What's included
+                                </h4>
+                                <div class="space-y-4 text-[13px] text-slate-600">
+                                    <p class="flex items-center gap-2"><iconify-icon icon="lucide:check-circle" class="text-green-500 shrink-0"></iconify-icon> AC, Wi‑Fi, power backup, caretaker support</p>
+                                    <p class="flex items-center gap-2"><iconify-icon icon="lucide:check-circle" class="text-green-500 shrink-0"></iconify-icon> Private pool (villa), parking for 4 cars</p>
+                                    <p class="flex items-center gap-2"><iconify-icon icon="lucide:check-circle" class="text-green-500 shrink-0"></iconify-icon> CCTV, fire safety, first aid</p>
+                                </div>
+                            </div>
+
+                            <div class="bg-forest rounded-[2.5rem] p-8 text-white relative overflow-hidden">
+                                <div class="relative z-10">
+                                    <h5 class="text-xl mb-2 font-serif">Need assistance?</h5>
+                                    <p class="text-white/60 text-sm mb-6">Call us for custom group bookings or date holds.</p>
+                                    <a href="tel:+917448020325" class="flex items-center gap-3 text-terracotta font-bold">
+                                        <iconify-icon icon="lucide:phone-call" class="text-2xl"></iconify-icon>
+                                        +91 74480 20325
+                                    </a>
+                                </div>
+                                <iconify-icon icon="lucide:help-circle" class="absolute -bottom-4 -right-4 text-8xl text-white/5"></iconify-icon>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <div data-include="footer"></div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-client.js"></script>
+    <script src="js/booking-state.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/booking.js"></script>
+</body>
+</html>

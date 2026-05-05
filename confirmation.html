@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Your Vedant's Bungalow booking confirmation and stay details.">
+    <title>Booking Confirmed | Vedant's Bungalow</title>
+    <script src="js/runtime-config.js"></script>
+    <script src="js/config.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body class="bg-cream text-slate-900">
+    <div class="min-h-screen flex flex-col">
+        <div data-include="header"></div>
+
+        <main class="flex-1 max-w-7xl mx-auto px-6 py-12 lg:py-20 w-full">
+            <p id="confirmation-banner" class="hidden mb-8 text-sm font-semibold rounded-2xl px-4 py-3 text-center" role="status"></p>
+
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center justify-center w-20 h-20 bg-forest rounded-full mb-6 animate-check shadow-xl">
+                    <iconify-icon icon="lucide:check" class="text-white text-4xl"></iconify-icon>
+                </div>
+                <h1 id="confirm-title" class="text-4xl md:text-5xl lg:text-6xl text-forest mb-4 font-serif">Booking confirmed!</h1>
+                <p class="text-slate-500 text-lg">Thank you for choosing Vedant's Bungalow. Your retreat awaits.</p>
+                <div class="mt-6 inline-block bg-forest/5 px-6 py-2 rounded-full border border-forest/10">
+                    <span class="text-sm font-semibold text-slate-500">Confirmation ID:</span>
+                    <span id="confirm-code" class="text-forest font-bold ml-2 tracking-widest">—</span>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-12 items-start">
+                <div class="lg:col-span-2 space-y-8">
+                    <div class="bg-white rounded-[2rem] p-8 md:p-10 shadow-sm border border-orange-50">
+                        <h3 class="text-2xl text-forest mb-8 flex items-center gap-3 font-serif">
+                            <iconify-icon icon="lucide:calendar-check" class="text-terracotta"></iconify-icon>
+                            Reservation details
+                        </h3>
+                        <div class="grid md:grid-cols-2 gap-y-10 gap-x-12">
+                            <div class="space-y-1">
+                                <label class="text-xs font-bold uppercase tracking-wider text-slate-400">Check-in</label>
+                                <p id="cf-checkin" class="text-lg font-bold text-forest">—</p>
+                                <p class="text-sm text-slate-500">From 2:00 PM</p>
+                            </div>
+                            <div class="space-y-1">
+                                <label class="text-xs font-bold uppercase tracking-wider text-slate-400">Check-out</label>
+                                <p id="cf-checkout" class="text-lg font-bold text-forest">—</p>
+                                <p class="text-sm text-slate-500">By 11:00 AM</p>
+                            </div>
+                            <div class="space-y-1">
+                                <label class="text-xs font-bold uppercase tracking-wider text-slate-400">Property</label>
+                                <p id="cf-property" class="text-lg font-bold text-forest">—</p>
+                                <p class="text-sm text-slate-500">67/1, Ranjanwadi, near Hotel Race View</p>
+                            </div>
+                            <div class="space-y-1">
+                                <label class="text-xs font-bold uppercase tracking-wider text-slate-400">Guests</label>
+                                <p id="cf-guests" class="text-lg font-bold text-forest">—</p>
+                            </div>
+                        </div>
+                        <hr class="my-10 border-slate-100">
+                        <div class="space-y-6">
+                            <h4 class="text-xl text-forest font-serif">Primary guest</h4>
+                            <div class="flex flex-wrap gap-8">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-10 h-10 bg-cream rounded-full flex items-center justify-center text-forest">
+                                        <iconify-icon icon="lucide:user"></iconify-icon>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-slate-400">Name</p>
+                                        <p id="cf-name" class="font-semibold">—</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-4">
+                                    <div class="w-10 h-10 bg-cream rounded-full flex items-center justify-center text-forest">
+                                        <iconify-icon icon="lucide:phone"></iconify-icon>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-slate-400">Phone</p>
+                                        <p id="cf-phone" class="font-semibold">—</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-4">
+                                    <div class="w-10 h-10 bg-cream rounded-full flex items-center justify-center text-forest">
+                                        <iconify-icon icon="lucide:mail"></iconify-icon>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-slate-400">Email</p>
+                                        <p id="cf-email" class="font-semibold">—</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="cf-requests-wrap" class="hidden pt-4">
+                                <p class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Special requests</p>
+                                <p id="cf-requests" class="text-slate-600 text-sm leading-relaxed"></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-[2rem] p-8 md:p-10 shadow-sm border border-orange-50">
+                        <h3 class="text-2xl text-forest mb-4 flex items-center gap-3 font-serif">
+                            <iconify-icon icon="lucide:info" class="text-terracotta"></iconify-icon>
+                            Cancellation policy
+                        </h3>
+                        <div class="bg-orange-50/50 rounded-2xl p-6">
+                            <p class="text-slate-600 leading-relaxed text-sm">
+                                Full refund for cancellations within <span class="font-bold text-forest">48 hours</span> of booking if check-in is at least 14 days away. 50% refund if cancelled at least 7 days before check-in. No refunds within 7 days of check-in.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <aside class="space-y-8">
+                    <div class="bg-white rounded-[2rem] overflow-hidden shadow-lg border border-orange-100">
+                        <div class="bg-forest px-8 py-6 text-white">
+                            <h3 class="text-xl font-serif">Billing summary</h3>
+                        </div>
+                        <div class="p-8 space-y-4 text-sm">
+                            <div class="flex justify-between items-center text-slate-500">
+                                <span>Subtotal</span>
+                                <span id="cf-sub">₹0</span>
+                            </div>
+                            <div class="flex justify-between items-center text-slate-500">
+                                <span>Extra guests</span>
+                                <span id="cf-extra">₹0</span>
+                            </div>
+                            <div class="flex justify-between items-center text-slate-500">
+                                <span>Service fee</span>
+                                <span id="cf-svc">₹0</span>
+                            </div>
+                            <div class="flex justify-between items-center text-slate-500">
+                                <span>GST</span>
+                                <span id="cf-gst">₹0</span>
+                            </div>
+                            <hr class="border-slate-100 my-4">
+                            <div class="flex justify-between items-center">
+                                <span class="text-lg font-bold text-forest">Total</span>
+                                <span id="cf-total" class="text-2xl font-bold text-terracotta">₹0</span>
+                            </div>
+                            <div id="cf-status-row" class="mt-8 pt-6 border-t border-slate-100">
+                                <div class="flex items-center gap-3 text-green-600 font-bold bg-green-50 px-4 py-3 rounded-xl">
+                                    <iconify-icon icon="lucide:credit-card"></iconify-icon>
+                                    <span id="cf-status-label">Status: —</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col gap-4">
+                        <a href="https://wa.me/917448020325" id="btn-contact-support" class="flex items-center justify-center gap-2 w-full bg-white border-2 border-slate-200 text-slate-700 font-bold py-4 rounded-2xl hover:bg-slate-50 transition-all">
+                            <iconify-icon icon="lucide:message-circle"></iconify-icon>
+                            WhatsApp concierge
+                        </a>
+                        <a href="/index.html" id="btn-back-home" class="flex items-center justify-center gap-2 w-full bg-forest text-white font-bold py-4 rounded-2xl hover:bg-terracotta transition-all shadow-md active:scale-[0.98]">
+                            Return to homepage
+                        </a>
+                    </div>
+
+                    <div class="bg-white rounded-[2rem] p-6 shadow-sm border border-orange-100">
+                        <p class="text-sm font-bold text-forest mb-4">Getting there</p>
+                        <div class="aspect-video rounded-xl bg-slate-100 overflow-hidden relative mb-4">
+                            <img id="cf-map-img" src="" class="w-full h-full object-cover opacity-50" alt="Property">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <a href="https://maps.app.goo.gl/ArdZAAn7CqJUgXUA6" target="_blank" rel="noopener noreferrer" class="bg-white px-4 py-2 rounded-full text-xs font-bold text-terracotta shadow-lg flex items-center gap-2">
+                                    <iconify-icon icon="lucide:map-pin"></iconify-icon>
+                                    Open in Google Maps
+                                </a>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-500 italic text-center">Near Hotel Race View, Mahabaleshwar.</p>
+                    </div>
+                </aside>
+            </div>
+        </main>
+
+        <div data-include="footer"></div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-client.js"></script>
+    <script src="js/booking-state.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/confirmation.js"></script>
+</body>
+</html>

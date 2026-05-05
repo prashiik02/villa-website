@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Complete your Vedant's Bungalow reservation with secure Razorpay checkout (cards, UPI, netbanking).">
+    <title>Secure Payment | Vedant's Bungalow</title>
+    <script src="js/runtime-config.js"></script>
+    <script src="js/config.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body class="bg-cream text-slate-900">
+    <div class="min-h-screen flex flex-col">
+        <div data-include="header"></div>
+
+        <div class="bg-white border-b border-orange-100 py-6">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="flex items-center justify-center space-x-4 md:space-x-8">
+                    <div class="flex items-center gap-3">
+                        <span class="w-8 h-8 rounded-full bg-forest text-white flex items-center justify-center text-sm font-bold">✓</span>
+                        <span class="text-slate-400 font-medium hidden sm:block">Details</span>
+                    </div>
+                    <div class="w-12 h-px bg-slate-200"></div>
+                    <div class="flex items-center gap-3">
+                        <span class="w-8 h-8 rounded-full bg-forest text-white flex items-center justify-center text-sm font-bold">✓</span>
+                        <span class="text-slate-400 font-medium hidden sm:block">Review</span>
+                    </div>
+                    <div class="w-12 h-px bg-slate-200"></div>
+                    <div class="flex items-center gap-3">
+                        <span class="w-8 h-8 rounded-full bg-terracotta text-white flex items-center justify-center text-sm font-bold ring-4 ring-orange-100">3</span>
+                        <span class="text-forest font-bold">Payment</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <main class="flex-1 max-w-7xl mx-auto px-6 py-12 w-full">
+            <p id="payment-page-error" class="hidden mb-8 text-sm font-semibold text-red-700 bg-red-50 rounded-2xl px-4 py-3 text-center" role="alert"></p>
+            <div class="grid lg:grid-cols-12 gap-12">
+                <div class="lg:col-span-7 space-y-8">
+                    <div>
+                        <h1 class="text-3xl md:text-4xl text-forest mb-4 font-semibold tracking-tight font-serif">Secure checkout</h1>
+                        <p class="text-slate-500">We use Razorpay’s hosted checkout — choose card, UPI, netbanking or wallets inside their secure window. We never collect raw card numbers on this site.</p>
+                    </div>
+
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 opacity-80 pointer-events-none select-none" aria-hidden="true">
+                        <div class="flex flex-col items-center justify-center p-4 rounded-2xl border-2 border-terracotta bg-orange-50 shadow-soft">
+                            <iconify-icon icon="lucide:credit-card" class="text-3xl mb-2 text-terracotta"></iconify-icon>
+                            <span class="text-sm font-semibold">Card</span>
+                        </div>
+                        <div class="flex flex-col items-center justify-center p-4 rounded-2xl border bg-white shadow-soft">
+                            <iconify-icon icon="simple-icons:upi" class="text-3xl mb-2 text-slate-400"></iconify-icon>
+                            <span class="text-sm font-semibold">UPI</span>
+                        </div>
+                        <div class="flex flex-col items-center justify-center p-4 rounded-2xl border bg-white shadow-soft">
+                            <iconify-icon icon="lucide:landmark" class="text-3xl mb-2 text-slate-400"></iconify-icon>
+                            <span class="text-sm font-semibold">Netbanking</span>
+                        </div>
+                        <div class="flex flex-col items-center justify-center p-4 rounded-2xl border bg-white shadow-soft">
+                            <iconify-icon icon="lucide:wallet" class="text-3xl mb-2 text-slate-400"></iconify-icon>
+                            <span class="text-sm font-semibold">Wallets</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-3xl p-8 shadow-soft border border-orange-50">
+                        <h3 class="text-xl font-bold text-forest mb-2 font-serif">Pay with Razorpay</h3>
+                        <p class="text-slate-500 text-sm mb-6">You will be redirected to Razorpay to authorize payment. After success we will confirm your booking instantly.</p>
+                        <button type="button" id="pay-razorpay-btn" class="w-full bg-terracotta text-white py-5 rounded-2xl font-bold text-lg hover:bg-forest transition-all shadow-xl active:scale-[0.98] flex items-center justify-center gap-3 disabled:opacity-50 disabled:pointer-events-none">
+                            <iconify-icon icon="lucide:lock" class="text-xl"></iconify-icon>
+                            <span id="pay-btn-label">Pay securely</span>
+                        </button>
+                        <p id="payment-hint" class="text-xs text-slate-400 mt-4 text-center">Booking reference loads automatically from your link.</p>
+                    </div>
+                </div>
+
+                <aside class="lg:col-span-5">
+                    <div class="sticky top-24 space-y-6">
+                        <div class="bg-white rounded-3xl overflow-hidden shadow-soft border border-orange-50">
+                            <div class="h-48 relative">
+                                <img id="pay-cover-img" src="" alt="" class="w-full h-full object-cover">
+                                <div id="pay-property-badge" class="absolute top-4 right-4 bg-terracotta text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest"></div>
+                            </div>
+                            <div class="p-8">
+                                <h2 class="text-2xl font-semibold text-forest mb-6 font-serif">Stay summary</h2>
+                                <div class="space-y-6 mb-8">
+                                    <div class="flex items-center gap-4">
+                                        <div class="w-12 h-12 rounded-xl bg-orange-50 flex items-center justify-center text-terracotta">
+                                            <iconify-icon icon="lucide:calendar" class="text-xl"></iconify-icon>
+                                        </div>
+                                        <div>
+                                            <p class="text-slate-400 text-xs font-bold uppercase">Check-in / check-out</p>
+                                            <p id="pay-dates" class="font-semibold">—</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-4">
+                                        <div class="w-12 h-12 rounded-xl bg-orange-50 flex items-center justify-center text-terracotta">
+                                            <iconify-icon icon="lucide:users" class="text-xl"></iconify-icon>
+                                        </div>
+                                        <div>
+                                            <p class="text-slate-400 text-xs font-bold uppercase">Guests</p>
+                                            <p id="pay-guests" class="font-semibold">—</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-4">
+                                        <div class="w-12 h-12 rounded-xl bg-orange-50 flex items-center justify-center text-terracotta">
+                                            <iconify-icon icon="lucide:user" class="text-xl"></iconify-icon>
+                                        </div>
+                                        <div>
+                                            <p class="text-slate-400 text-xs font-bold uppercase">Guest</p>
+                                            <p id="pay-guest-name" class="font-semibold">—</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="border-t border-dashed border-slate-100 pt-6 space-y-3 text-sm">
+                                    <div class="flex justify-between text-slate-500">
+                                        <span>Subtotal</span>
+                                        <span id="pay-line-sub">₹0</span>
+                                    </div>
+                                    <div class="flex justify-between text-slate-500">
+                                        <span>Extra guests</span>
+                                        <span id="pay-line-extra">₹0</span>
+                                    </div>
+                                    <div class="flex justify-between text-slate-500">
+                                        <span>Service fee</span>
+                                        <span id="pay-line-svc">₹0</span>
+                                    </div>
+                                    <div class="flex justify-between text-slate-500">
+                                        <span>GST</span>
+                                        <span id="pay-line-gst">₹0</span>
+                                    </div>
+                                    <div class="flex justify-between text-2xl font-bold text-forest pt-4 border-t border-slate-100">
+                                        <span>Total</span>
+                                        <span id="pay-line-total" class="text-terracotta">₹0</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-forest rounded-3xl p-6 text-white">
+                            <div class="flex gap-4">
+                                <iconify-icon icon="lucide:verified" class="text-4xl text-terracotta shrink-0"></iconify-icon>
+                                <div>
+                                    <h4 class="font-bold mb-1">Secure booking</h4>
+                                    <p class="text-sm text-white/70">Payments are processed by Razorpay. This page never asks for card or UPI secrets.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </main>
+
+        <div data-include="footer"></div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-client.js"></script>
+    <script src="js/booking-state.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/payment.js"></script>
+</body>
+</html>
